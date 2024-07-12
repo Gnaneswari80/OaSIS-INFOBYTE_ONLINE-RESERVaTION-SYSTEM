@@ -1,0 +1,93 @@
+package online;
+
+import java.sql.SQLException;
+
+import java.util.Scanner;
+
+
+public class onlinereservtion {
+
+	
+		public static String str;
+		public static boolean match;
+		 static Scanner scs=new Scanner(System.in);	
+	static String nme()
+		{
+			String nm;
+			return nm=scs.nextLine();
+		}
+		
+		public static void main(String[] args) throws ClassNotFoundException, SQLException {
+			// TODO Auto-generated method stub
+			
+			onlinereservtion or=new onlinereservtion();
+			 Scanner sc=new Scanner(System.in);
+			String train[]=new String[3];
+			int num[]=new int[3];
+			
+			String name;
+			int id;
+			train[0]="Saptagiri express";
+			train[1]="venkatadri express";
+			train[2]="rajamandri express";
+			
+			num[0]=1001;
+			num[1]=1002;
+			num[2]=1003;
+
+			       while(true)
+			       {////while
+			    	   System.out.println("1.New user 2.Login 3.Totl records 4.Exit");
+						int choice=sc.nextInt();
+						if(choice==1) 
+						{
+							new InsertRecord();
+			             }
+						else if(choice==2)
+						{
+						
+							new Logineduser();
+							  System.out.println(str);
+					          if(or.match)
+					          {
+					        	  System.out.println("Enter place Sorce to destintion in the given formt** Hyderabad to chennai** :");
+					        	  String place=onlinereservtion.nme();
+					        	  System.out.println("available Train names :");
+					        	  int i=1;
+					        	  for(int j=0;j<3;j++)
+					        	  {
+					        		  System.out.println(i+"."+train[j]+" ");
+					        		  i++;
+					        	  }
+					        	 
+					        	  System.out.println("Enter train serial number  ");
+					        	  int n=sc.nextInt();
+					        	  System.out.print("Enter Date:");
+					        	  String date=onlinereservtion.nme();
+					        	  int nm=num[n-1];
+					        	   String sr=train[n-1];
+					        	  new storingInTble(nm,sr,place,date);
+					        	  System.out.println("Your Train ticket is booked..");
+					          }
+					         
+					          
+						}//choice 2 end
+						else if(choice==3)
+						{//p
+							new gettingRecordsFromDtbse();
+							
+						}//p
+						else if(choice==4)
+							System.exit(1);
+
+			       }////while
+			      //con.close(); 
+
+			
+
+			 
+						
+
+	}
+
+}

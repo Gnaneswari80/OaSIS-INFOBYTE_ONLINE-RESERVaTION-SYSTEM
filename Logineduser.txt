@@ -1,0 +1,65 @@
+package online;
+
+import java.sql.Connection;
+
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+
+
+public class Logineduser {
+	
+	
+	static //Logineduser ld=new Logineduser();
+	Scanner sc=new Scanner(System.in);
+	static String usernme()
+	{
+		String nm;
+		return nm=sc.nextLine();
+	}
+	static String pssword()
+	{
+		String nm;
+		return nm=sc.nextLine();
+	}
+	
+	Logineduser() throws ClassNotFoundException, SQLException
+	{
+		onlinereservtion os=new onlinereservtion();
+		
+		System.out.print("Enter User name:");
+	String	name =Logineduser.usernme();
+		System.out.print("Enter pssword");
+		
+		String pss=Logineduser.pssword();
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		 Connection cop=DriverManager.getConnection("jdbc:mysql://localhost:3306/onlinereservationsystem","root","");
+	 Statement ss=cop.createStatement();
+	ResultSet res=ss.executeQuery("select * from userdetails");
+			
+          while(res.next())
+       	{
+  	
+	//System.out.println(res.getString(1)+" "+res.getInt(2));
+  	    if(pss.equals(res.getString(2))&&name.equals(res.getString(1)))
+	    {
+		os.str="Welcome User";
+		os.match=true;
+		break;
+		
+	     }
+	     else
+	    {
+		    os.match=false;
+		//
+		  os.str="Invalid user id and name ";
+	    }
+   				
+      }
+	}
+
+
+}

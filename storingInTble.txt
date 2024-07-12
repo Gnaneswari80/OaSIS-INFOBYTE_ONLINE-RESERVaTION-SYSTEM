@@ -1,0 +1,25 @@
+package online;
+
+import java.sql.Connection;
+
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class storingInTble {
+
+
+	storingInTble(int num,String trnm,String place,String dt) throws SQLException, ClassNotFoundException
+	{
+		Class.forName("com.mysql.cj.jdbc.Driver");
+	  Connection coc=DriverManager.getConnection("jdbc:mysql://localhost:3306/onlinereservationsystem","root","");
+	  PreparedStatement s=coc.prepareStatement("insert into userhistory values(?,?,?,?)");
+         s.setInt(1,num);s.setString(2,trnm);
+         s.setString(3,place);s.setString(4,dt);
+         s.executeUpdate();
+         
+         }
+         
+
+	
+}
